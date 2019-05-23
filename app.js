@@ -1,5 +1,7 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
+const colors = document.getElementsByClassName("jsColor");
+
 
 canvas.width = 500;
 canvas.height = 550;
@@ -29,10 +31,10 @@ function onMouseMove(event){
     }
 }
 
-function onMouseDown(event){
-    painting = true;
+function handleColorClick(event){
+    const color = event.target.style.backgroundColor;
+    ctx.strokeStyle = color;
 }
-
 
 /*
 1. 'onMouseUp'과 'onMouseLeave'의 값이 같으므로 겹치는
@@ -51,5 +53,7 @@ if(canvas){
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
     canvas.addEventListener("mouseup", stopPainting);
-    
 }
+
+Array.from(colors).forEach(nameOfInsideItems => nameOfInsideItems.addEventListener("click", handleColorClick));
+//'nameOfInsideItems'의 이름은 아무거나 해도 상관없다.
