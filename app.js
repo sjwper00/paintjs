@@ -1,13 +1,13 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
-
+const range = document.getElementById("jsRange");
 
 canvas.width = 500;
 canvas.height = 550;
 
 ctx.strokeStyle = "#2c2c2c";
-ctx.lineWidth = 5.0;
+ctx.lineWidth = 5.5;
 
 let painting = false;
 
@@ -36,6 +36,11 @@ function handleColorClick(event){
     ctx.strokeStyle = color;
 }
 
+function handleRangeChange(event){
+    const size = event.target.value;
+    ctx.lineWidth = size;
+}
+
 /*
 1. 'onMouseUp'과 'onMouseLeave'의 값이 같으므로 겹치는
 값은 객체지향으로 따로 함수로 설정한 후, 값을 함수
@@ -55,5 +60,11 @@ if(canvas){
     canvas.addEventListener("mouseup", stopPainting);
 }
 
-Array.from(colors).forEach(nameOfInsideItems => nameOfInsideItems.addEventListener("click", handleColorClick));
+if(colors){
+    Array.from(colors).forEach(nameOfInsideItems => nameOfInsideItems.addEventListener("click", handleColorClick));
+}
 //'nameOfInsideItems'의 이름은 아무거나 해도 상관없다.
+
+if(range){
+    range.addEventListener("input", handleRangeChange);
+}
