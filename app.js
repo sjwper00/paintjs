@@ -4,6 +4,7 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const save = document.getElementById("jsSave");
+const reset = document.getElementById("jsReset");
 
 const INITIAL_COLOR = "#2c2c2c"
 
@@ -15,6 +16,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 5.5;
+
 
 let painting = false;
 let filling = false;
@@ -78,6 +80,10 @@ function handleSaveClick(){
     link.download = "What a Masterpiece!";
     link.click();
 }
+
+function handleResetClick(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 /*
 1. 'onMouseUp'과 'onMouseLeave'의 값이 같으므로 겹치는
 값은 객체지향으로 따로 함수로 설정한 후, 값을 함수
@@ -114,4 +120,8 @@ if(mode){
 
 if(save){
     save.addEventListener("click", handleSaveClick);
+}
+
+if(reset){
+    reset.addEventListener("click", handleResetClick);
 }
