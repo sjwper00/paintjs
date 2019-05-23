@@ -68,7 +68,7 @@ function handleCanvasClick(){
 }
 
 function handleCM(event){
-    console.log(event);
+    event.preventDefault();
 }
 
 function handleSaveClick(){
